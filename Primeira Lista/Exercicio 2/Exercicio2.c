@@ -8,13 +8,13 @@ char *retirar(char *remover);
 
 int main(){
     char *c;
-    c = (char *)malloc(sizeof(char));
+    c = malloc(sizeof(char));
     if(c == NULL){
         printf("Erro na alocação da memória!!");
         exit(1);
     }
     c[0] = '\0';
-    int opcao, i, w;
+    int opcao;
     do{
         printf("1- Adicionar: \n");
         printf("2- Remover: \n");
@@ -54,19 +54,18 @@ char *inserir(char *aloc){
         printf("Erro de memoria!!");
         exit(1);
     }
-        strcat(nome, " ");
         strcat(aloc, nome);
+        strcat(aloc, " ");
         return aloc;
 }
 
 char *retirar(char *remover){
     char *aux;
-    char nome[15];
+    char nome[11];
     int i=0, w;
     printf("Digite o nome para se remvoer da string:\n");
     scanf("%s", nome);
     strcat(nome, " ");
-    aux = (char *)realloc(aux, strlen(nome));
     aux = strstr(remover, nome);
     if(!aux){
         printf("Nome não encontrado!");
