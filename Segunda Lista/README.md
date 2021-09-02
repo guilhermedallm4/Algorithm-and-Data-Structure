@@ -14,7 +14,7 @@ deseja mais entrar com os dados de outra pessoa.
 • Antes de sair o programa deve apresentar, de forma
 organizada, os dados de todas as pessoas.
 
-LINK DO VIDEO: https://drive.google.com/drive/folders/1uGm4KycnuUDF-MK4tu3sfIWeFAVUyWpU?usp=sharing
+LINK DO VIDEO: https://drive.google.com/drive/folders/1kv7aZntRa8AZ5g1iJ_BMrnLtIqSETmLw?usp=sharing
 
 # EXERCICIO 7
 
@@ -26,4 +26,4 @@ Pessoa pessoas[10].
     2. Não pode usar struct dentro do pBuffer
 3. Como sempre, entregar o código e o vídeo explicando o código, mostrando casos de teste e o resultado do DrMemory
 
-LINK DO VIDEO: https://drive.google.com/drive/folders/14qKiII6qp0uY2n-Lnq83nd0NwwZfMqEF?usp=sharing
+LINK DO VIDEO: https://drive.google.com/drive/folders/1_k0caQQ0f82OKLiGX8GT82IDusHPTQ14?usp=sharing
