@@ -14,6 +14,8 @@ deseja mais entrar com os dados de outra pessoa.
 • Antes de sair o programa deve apresentar, de forma
 organizada, os dados de todas as pessoas.
 
+LINK DO VIDEO: https://drive.google.com/drive/folders/1uGm4KycnuUDF-MK4tu3sfIWeFAVUyWpU?usp=sharing
+
 # EXERCICIO 7
 
 1. O programa deve armazenar no máximo 10 pessoas
@@ -23,3 +25,5 @@ Pessoa pessoas[10].
     1. Os ponteiros devem apontar para um buffer chamado pBuffer onde os dados devem ser armazenados. Por exemplo, um contador para um for deve ser um ponteiro para int e o int vai ficar armazenado dentro de pBuffer.
     2. Não pode usar struct dentro do pBuffer
 3. Como sempre, entregar o código e o vídeo explicando o código, mostrando casos de teste e o resultado do DrMemory
+
+LINK DO VIDEO: https://drive.google.com/drive/folders/14qKiII6qp0uY2n-Lnq83nd0NwwZfMqEF?usp=sharing

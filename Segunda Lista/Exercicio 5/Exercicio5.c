@@ -11,14 +11,14 @@ void *inserir(void *adicionar_pessoas);
 void list(void *exit);
 
 int main(){
-    void *info;
-    info = malloc(NNAME);
+    void *pBuffer;
+    pBuffer = malloc(NNAME);
     
-    if(!info){
+    if(!pBuffer){
         printf("Erro de memória!");
         exit(1);
     }
-    *(int *)info = 0;
+    *(int *)pBuffer = 0;
 
     int opcao;
     do{
@@ -28,12 +28,12 @@ int main(){
         switch (opcao)
         {
         case 1:
-            info = inserir(info);
+            pBuffer = inserir(pBuffer);
             break;
         
         case 2:
-            list(info);
-            free(info);
+            list(pBuffer);
+            free(pBuffer);
             break;
         }
     }while(opcao != 2);

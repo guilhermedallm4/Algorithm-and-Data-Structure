@@ -1,0 +1,3 @@
+Pós gravação foi verificado oque estava dando Warning então foi arrumado.
+
+eram os returns pBuffer, em funções que não era preciso retornar valor pois nada obtinha o valor retornado por eles diferente das funções addPerson e removed.

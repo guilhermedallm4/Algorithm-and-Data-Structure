@@ -1,0 +1,26 @@
+Dr. Memory version 2.3.0 build 1 built on Feb  6 2020 06:09:03
+Windows version: WinVer=105;Rel=2009;Build=19043;Edition=Enterprise
+Dr. Memory results for pid 12472: "exercicio5.exe"
+Application cmdline: "exercicio5.exe"
+Recorded 118 suppression(s) from default D:\Programas\Dr. Memory\bin\suppress-default.txt
+
+===========================================================================
+FINAL SUMMARY:
+
+DUPLICATE ERROR COUNTS:
+
+SUPPRESSIONS USED:
+
+NO ERRORS FOUND:
+      0 unique,     0 total unaddressable access(es)
+      0 unique,     0 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total handle leak(s)
+      0 unique,     0 total warning(s)
+      0 unique,     0 total,      0 byte(s) of leak(s)
+      0 unique,     0 total,      0 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      4 unique,     4 total,   4127 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: D:\Programas\Dr. Memory\drmemory\logs\DrMemory-exercicio5.exe.12472.000\results.txt

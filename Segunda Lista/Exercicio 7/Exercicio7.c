@@ -75,7 +75,7 @@ void *addPerson(void *pBuffer){
     if (*(int *)(pBuffer + OPTION) >= 10) {
         printf("Lista cheia!\n");
          printf("Remova alguem para insirir outra pessoa!\n");
-          return pBuffer;
+        return pBuffer;
 
     } else {
         printf("Digite o nome:\n ");
@@ -99,7 +99,7 @@ void *addPerson(void *pBuffer){
 void list(void *pBuffer){
         if (*(int *)(pBuffer + OPTION) == 0) {
             printf("Agenda esta vazia, insira algo!\n\n");
-             return pBuffer;
+             return;
         }else {
             for (*(int *)pBuffer = 0 ; *(int *)pBuffer < *(int *)(pBuffer + OPTION) ; *(int *)pBuffer = *(int *)pBuffer + 1 ){
                printf("Nname [%d]\n", *(int *)pBuffer + 1);
@@ -108,7 +108,7 @@ void list(void *pBuffer){
                   printf("Numero: %d\n\n", (pessoas + *(int *)(pBuffer)) -> telephone);
             }
             *(int *)pBuffer = 0;
-             return pBuffer;
+             return;
         }
 }
 
@@ -116,7 +116,7 @@ void search(void *pBuffer){
 
     if(*(int *)(pBuffer + OPTION) == 0){
          printf("Lista esta vazia!!\n");
-          return pBuffer;
+          return;
     }
     else{
         printf("Digite o nome que queira buscar: \n");
@@ -129,13 +129,13 @@ void search(void *pBuffer){
                    printf("Idade: %d\n", (pessoas + *(int *)(pBuffer)) -> age);
                     printf("Numero: %d\n\n", (pessoas + *(int *)(pBuffer)) -> telephone);
                     *(int *)pBuffer = 0;
-                 return pBuffer;
+                 return;
             }   
             }
         }
              printf("Nome nao encontrado na lista!\n");
               *(int *)pBuffer = 0;
-             return pBuffer; 
+             return; 
 }
 
 void *removed(void *pBuffer){
