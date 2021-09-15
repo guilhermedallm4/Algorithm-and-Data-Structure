@@ -39,8 +39,7 @@ int main(){
         {
         case 1:
             *(int *)(pBuffer + OPTION) = *(int *)(pBuffer + OPTION) + 1;
-             pFirst = addPerson(pBuffer, linkedlist, pFirst);
-            printf("%s", pFirst);
+            pFirst = addPerson(pBuffer, linkedlist, pFirst);
             printf("\n");
             break;
         
@@ -66,14 +65,16 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){
 
      if(*(int *)(pBuffer + OPTION) == 1){
         pFirst = linkedlist;
-        
+        *(void **)(linkedlist + NAME + AGE + NUMBER) = linkedlist;
     }
+
    else if(*(int *)(pBuffer + OPTION) != 1){
-
        *(int *)((pFirst + (NAME + AGE + NUMBER + ANTERIOR) * (*(int *)(pBuffer + OPTION) - 1))) = linkedlist;  
-
+        *(void **)(linkedlist + NAME + AGE + NUMBER) = linkedlist - 40;
+        
+        printf("%p\n", *(void **)(linkedlist + NAME + AGE + NUMBER));
     }
-
+    printf("%p\n", linkedlist);
     printf("Digite o nome: ");
      scanf("%s", (char *)(linkedlist)); // Adicionando nome;
       printf("Digite a idade: ");
