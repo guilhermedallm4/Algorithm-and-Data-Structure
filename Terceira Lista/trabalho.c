@@ -4,6 +4,7 @@
 //Variaveis contador
 #define OPTION (sizeof(int))
 #define CONTADOR (sizeof(int))
+#define AUX_CHAR (sizeof(char)*10)
 
 //Variaveis linkedlist
 #define NAME (sizeof(char)*10)
@@ -13,24 +14,27 @@
 #define ANTERIOR (sizeof(void **))
 
 void *addPerson(void *pBuffer, void *linkedlist,  void *pFirst);
-//void show(void *pBuffer, void *linkedlist, void *pFirst, void *pRun);
+void show(void *pFirst, void *pRun);
+void search(void *pFirst, void *pRun, void *pBuffer);
+
+
 int main(){
     void *linkedlist;
     void *pFirst;
     void *pRun;
-    void *pBuffer = malloc(OPTION + CONTADOR);
+    void *pBuffer = malloc(OPTION + CONTADOR + AUX_CHAR);
      if(!pBuffer){
                 printf("Erro de memória!");
                 exit(0);
             }
-    
+    pFirst = NULL;
     *(int *)(pBuffer + OPTION) = 0;
     do{
         printf("Digite a opção: \n");
         printf("1 - Adicionar\n2-Remover\n3-Buscar\n4-Listar\n5-Sair\n");
         scanf("%d", (int *)pBuffer);
         getchar();
-
+        printf("\n");
        switch (*(int *)pBuffer)
         {
         case 1:
@@ -38,6 +42,13 @@ int main(){
              pFirst = addPerson(pBuffer, linkedlist, pFirst);
             printf("%s", pFirst);
             printf("\n");
+            break;
+        
+        case 3:
+            search(pFirst, pRun, pBuffer);
+            break;
+        case 4:
+            show(pFirst, pRun);
             break;
         default:
             printf("Opção Invalida!\n");
@@ -57,38 +68,51 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){
         pFirst = linkedlist;
         
     }
-   if(*(int *)(pBuffer + OPTION) != 1){
+   else if(*(int *)(pBuffer + OPTION) != 1){
 
-       *(int *)((pFirst + (NAME + AGE + NUMBER + ANTERIOR) * (*(int *)(pBuffer + OPTION)))) = linkedlist;
-   }
+       *(int *)((pFirst + (NAME + AGE + NUMBER + ANTERIOR) * (*(int *)(pBuffer + OPTION) - 1))) = linkedlist;  
+
+    }
+
     printf("Digite o nome: ");
-    scanf("%s", (char *)(linkedlist)); // Adicionando nome;
-    printf("Digite a idade: ");
-    scanf("%d", (int *)(linkedlist + NAME)); // Adicionando Idade;
-    printf("Digite o numero: ");
-    scanf("%d", (int *)(linkedlist + NAME + AGE)); // Adicionando numero;
-    aux = pFirst;  // Aux para percorrer o vetor;
-    printf("\n");
-    printf("%p\n", *(void **)((pFirst + (NAME + AGE + NUMBER + ANTERIOR) * (*(int *)(pBuffer + OPTION))))); // Valor do proximo
-    printf("%p\n", linkedlist); // Valor de memória onde começa o proximo
-    printf("%s", pFirst);
-    printf("\n");
-
-    /*do{ // Percorrer toda lista encadeada
-                aux = *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR );
-                printf("%p\n", aux); // Printa o proximo espaço de memória
-                getchar();
-    }while(*(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR ) != NULL);*/
+     scanf("%s", (char *)(linkedlist)); // Adicionando nome;
+      printf("Digite a idade: ");
+       scanf("%d", (int *)(linkedlist + NAME)); // Adicionando Idade;
+       printf("Digite o numero: ");
+       scanf("%d", (int *)(linkedlist + NAME + AGE)); // Adicionando numero;
+      printf("\n");
     return pFirst;
 
-
-
 }
-/*
-pFirst * 2 // 2 pessoa
-pFirst * 3 // 3 pessoa*/
-/*
-void show(void *pBuffer, void *linkedlist, void *pFirst, void *pRun){
+
+
+void show(void *pFirst, void *pRun){
         pRun = pFirst;
         
-}*/
+      while(pRun != NULL){
+          printf("%s\n", pRun);
+          printf("%d\n", *(int *)(pRun + NAME));
+          printf("%d\n", *(int *)(pRun + NAME + AGE));
+          printf("\n");
+         pRun = *(int *)(pRun + NAME + AGE + NUMBER + ANTERIOR);
+      }    
+      return 0;
+}
+
+
+void search(void *pFirst, void *pRun, void *pBuffer){
+    printf("Digite o nome que queira buscar: ");
+    scanf("%s", (char *)(pBuffer + OPTION + CONTADOR));
+    pRun = pFirst;
+    while(pRun != NULL){
+        if(strcmp(pRun,(char *)(pBuffer + OPTION + CONTADOR)) == 0){
+          printf("%s\n", pRun);
+          printf("%d\n", *(int *)(pRun + NAME));
+          printf("%d\n", *(int *)(pRun + NAME + AGE));
+          return ;
+        }
+      pRun = *(int *)(pRun + NAME + AGE + NUMBER + ANTERIOR);
+    }
+    printf("Nome não encontrado!\n");
+    return;
+}
