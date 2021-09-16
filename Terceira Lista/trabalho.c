@@ -19,6 +19,7 @@
 
 void *addPerson(void *pBuffer, void *linkedlist,  void *pFirst);
 void *removed(void *pFirst, void *pBuffer, void *pRun);
+void *sair(void *pFirst, void *pBuffer, void *pRun);
 void show(void *pFirst, void *pRun, void *pBuffer);
 void search(void *pFirst, void *pRun, void *pBuffer);
 
@@ -66,14 +67,17 @@ int main(){
             break;
         case 5:
             printf("SAINDO!!!\n");
-            exit(0);
+            break;
         default:
             printf("Opção Invalida!\n");
             break;
         }
     }while(*(int *)pBuffer != 5);
-
-    
+    sair(pFirst, pBuffer, pRun);
+    free(pBuffer);
+    free(pRun);
+    free(pFirst);
+    free(linkedlist);
 }
 
 void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){
@@ -152,3 +156,12 @@ void *removed(void *pFirst, void *pBuffer, void *pRun){
         return pFirst;
 }
 
+void *sair(void *pFirst, void *pBuffer, void *pRun){
+    pRun = pFirst;
+    while(pRun != NULL){
+        pFirst = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
+        free(pRun);
+        *(void **)(pFirst + NAME + AGE + NUMBER ) = NULL;
+        pRun = pFirst;
+    }   
+}
