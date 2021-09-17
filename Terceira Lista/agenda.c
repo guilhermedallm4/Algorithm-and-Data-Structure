@@ -81,7 +81,7 @@ int main(){
         case 4:
               if(*(int *)(pBuffer + OPTION) == 0){
               printf("Lista vazia!\n");
-              return;
+              break;
       }
       else{
             show(pFirst, pRun);
@@ -136,6 +136,7 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
                         *(void **)(aux + NAME + AGE + NUMBER) = linkedlist;
                         *(void **)(linkedlist + NAME + AGE + NUMBER) = NULL;
                         *(void **)pFirst = linkedlist;
+                        *(int *)(pBuffer) = 1;
                         return pFirst;
                    }
                     else{
@@ -145,6 +146,7 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
                             *(void **)(linkedlist + NAME + AGE + NUMBER) = aux_2; //atribui o anterior ao linkedlist B -> A
                             *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR) = aux; // atribui o proximo ao B -> C
                             *(void **)(aux + NAME + AGE + NUMBER) = linkedlist;              
+                            *(int *)(pBuffer) = 1;
                             return pFirst;
                         }
             }
@@ -156,7 +158,8 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
                         aux = *(void **)(pFirst + PRIMEIRO); // recebe o anterior
                          *(void **)(aux + (NAME + AGE + NUMBER + ANTERIOR)) = linkedlist; // Adiciona o proximo
                          *(void **)(linkedlist + NAME + AGE + NUMBER) = aux; // Adiciona o anterior
-                         *(void **)(pFirst + PRIMEIRO) = linkedlist; // Adiciona o atual 
+                         *(void **)(pFirst + PRIMEIRO) = linkedlist; // Adiciona o atual
+                         *(int *)(pBuffer) = 1;
                           return pFirst;
                 }
     }
