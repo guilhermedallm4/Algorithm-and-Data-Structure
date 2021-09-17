@@ -8,26 +8,27 @@
 #define AUX_CHAR (sizeof(char)*20)
 
 //Variaveis Aux
-#define ANTERIOR (sizeof(void **))
+#define ULTIMO (sizeof(void **))
 #define PRIMEIRO (sizeof(void **))
 
 //Variaveis linkedlist
 #define NAME (sizeof(char)*20)
 #define AGE (sizeof(int))
 #define NUMBER (sizeof(int))
+#define ANTERIOR (sizeof(void **))
 #define PROX (sizeof(void **))
 
 void *addPerson(void *pBuffer, void *linkedlist,  void *pFirst);
 void *removed(void *pFirst, void *pRun);
 void exitprogam(void *pFirst, void *pRun);
-void show(void *pFirst, void *pRun, void *pBuffer);
+void show(void *pFirst, void *pRun);
 void search(void *pFirst, void *pRun, void *pBuffer);
 
 int main(){
     void *linkedlist;
     void *pRun;
     
-    void *pFirst = malloc(PRIMEIRO + ANTERIOR);
+    void *pFirst = malloc(PRIMEIRO + ULTIMO);
     if(!pFirst){
         printf("Erro de memória!");
                 exit(0);
@@ -67,14 +68,26 @@ int main(){
             }
 
         case 3:
-            search(pFirst, pRun, pBuffer);
-            printf("\n");
+        if(*(int *)(pBuffer + OPTION) == 0){
+          printf("Lista vazia!\n");
             break;
+        }
+        else{
+                search(pFirst, pRun, pBuffer);
+                printf("\n");
+                break;
+        }
 
         case 4:
-            show(pFirst, pRun, pBuffer);
+              if(*(int *)(pBuffer + OPTION) == 0){
+              printf("Lista vazia!\n");
+              return;
+      }
+      else{
+            show(pFirst, pRun);
             printf("\n");
             break;
+      }
 
         case 5:
             printf("SAINDO!!!\n");
@@ -150,15 +163,11 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
     return pFirst;
 }
 
-void show(void *pFirst, void *pRun, void *pBuffer){ // Printar OK
+void show(void *pFirst, void *pRun){ // Printar OK
         pRun = *(void **)pFirst;
-      if(*(int *)(pBuffer + OPTION) == 0){
-          printf("Lista vazia!\n");
-            return;
-      }
       while(pRun != NULL){
     
-          printf("Nome: %s\n", pRun);
+          printf("Nome: %s\n", (char *)pRun);
           printf("Idade: %d\n", *(int *)(pRun + NAME));
           printf("Numero: %d\n", *(int *)(pRun + NAME + AGE));
           printf("\n");
@@ -169,10 +178,6 @@ void show(void *pFirst, void *pRun, void *pBuffer){ // Printar OK
 
 void search(void *pFirst, void *pRun, void *pBuffer){ // Procurar OK
 
-    if(*(int *)(pBuffer + OPTION) == 0){
-          printf("Lista vazia!\n");
-            return;
-      }
     printf("Digite o nome que queira buscar: ");
     scanf("%s", (char *)(pBuffer + OPTION + CONTADOR));
     pRun = *(void **)pFirst;
@@ -183,7 +188,7 @@ void search(void *pFirst, void *pRun, void *pBuffer){ // Procurar OK
           printf("Telefone: %d\n", *(int *)(pRun + NAME + AGE));
           return ;
         }
-      pRun = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
+      pRun = *(void **)(pRun + NAME + AGE + NUMBER + ULTIMO);
     }
     printf("Nome não encontrado!\n");
     return;
@@ -199,7 +204,7 @@ void *removed(void *pFirst, void *pRun){ // Removendo OK
         return pFirst;
 }
 
-void exitprogam(void *pFirst, void *pRun){
+void exitprogam(void *pFirst, void *pRun){ // LIBERAR MEMÓRIA OK
     pRun = *(void **)pFirst;
     while(pRun != NULL){
         *(void **)pFirst = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
