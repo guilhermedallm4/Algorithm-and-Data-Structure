@@ -18,7 +18,8 @@
 #define PROX (sizeof(void **))
 
 void *addPerson(void *pBuffer, void *linkedlist,  void *pFirst);
-void *removed(void *pFirst, void *pBuffer, void *pRun);
+void *removed(void *pFirst, void *pRun);
+void exitprogam(void *pFirst, void *pRun);
 void show(void *pFirst, void *pRun, void *pBuffer);
 void search(void *pFirst, void *pRun, void *pBuffer);
 
@@ -60,7 +61,7 @@ int main(){
                 break;
             }
             else{
-            pFirst = (void *)removed(pFirst, pBuffer, pRun);
+            pFirst = (void *)removed(pFirst, pRun);
             *(int *)(pBuffer + OPTION) = *(int *)(pBuffer + OPTION) - 1;
             break;
             }
@@ -77,6 +78,10 @@ int main(){
 
         case 5:
             printf("SAINDO!!!\n");
+            exitprogam(pFirst, pRun);
+            free(pFirst);
+            free(pBuffer);
+            exit(0);
             break;
 
         default:
@@ -86,7 +91,7 @@ int main(){
     }while(*(int *)pBuffer != 5);
 }
 
-void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){
+void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
     linkedlist = malloc(NAME + AGE + NUMBER + ANTERIOR + PROX); //Aloca um espaço pro Linkedlist
     void *aux;
     void *aux_2;
@@ -126,15 +131,9 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){
                             *(void **)(aux_2 + NAME + AGE + NUMBER + ANTERIOR) = linkedlist; // atribui o proximo; A -> B
                             *(void **)(linkedlist + NAME + AGE + NUMBER) = aux_2; //atribui o anterior ao linkedlist B -> A
                             *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR) = aux; // atribui o proximo ao B -> C
-                            *(void **)(aux + NAME + AGE + NUMBER) = linkedlist;
-                            /*printf("anterior: %p\n",*(void **)(aux_2 + NAME + AGE + NUMBER));
-                            printf("Atual: %p\n", linkedlist);*/
-                            
-                            
-                            
+                            *(void **)(aux + NAME + AGE + NUMBER) = linkedlist;              
                             return pFirst;
                         }
-
             }
             *(int *)(pBuffer) = *(int *)(pBuffer) + 1; 
             aux = *(void **)(aux + NAME + AGE + NUMBER + ANTERIOR);
@@ -176,24 +175,23 @@ void search(void *pFirst, void *pRun, void *pBuffer){ // Procurar OK
       }
     printf("Digite o nome que queira buscar: ");
     scanf("%s", (char *)(pBuffer + OPTION + CONTADOR));
-    pRun = pFirst;
+    pRun = *(void **)pFirst;
     while(pRun != NULL){
         if(strcmp(pRun,(char *)(pBuffer + OPTION + CONTADOR)) == 0){
           printf("Nome: %s\n", (char *)pRun);
           printf("Idade: %d\n", *(int *)(pRun + NAME));
           printf("Telefone: %d\n", *(int *)(pRun + NAME + AGE));
-          printf("%p\n", *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR));
           return ;
         }
-      *(void **)pRun = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
+      pRun = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
     }
     printf("Nome não encontrado!\n");
     return;
 }
 
-void *removed(void *pFirst, void *pBuffer, void *pRun){ // removendo
+void *removed(void *pFirst, void *pRun){ // Removendo OK
 
-        pRun = pFirst;
+        pRun = *(void **)pFirst;
         *(void **)pFirst = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
         free(pRun);
         *(void **)(pFirst + NAME + AGE + NUMBER) = NULL;
@@ -201,3 +199,13 @@ void *removed(void *pFirst, void *pBuffer, void *pRun){ // removendo
         return pFirst;
 }
 
+void exitprogam(void *pFirst, void *pRun){
+    pRun = *(void **)pFirst;
+    while(pRun != NULL){
+        *(void **)pFirst = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
+        free(pRun);
+        pRun = *(void **)(pFirst + NAME + AGE + NUMBER + ANTERIOR);
+    }
+    free(pRun);
+    return;
+}
