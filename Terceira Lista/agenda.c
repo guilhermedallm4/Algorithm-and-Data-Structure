@@ -20,7 +20,7 @@
 
 void *addPerson(void *pBuffer, void *linkedlist,  void *pFirst);
 void *removed(void *pFirst, void *pRun);
-void exitprogam(void *pFirst, void *pRun);
+void *exitprogam(void *pFirst, void *pRun);
 void show(void *pFirst, void *pRun);
 void search(void *pFirst, void *pRun, void *pBuffer);
 
@@ -91,7 +91,7 @@ int main(){
 
         case 5:
             printf("SAINDO!!!\n");
-            exitprogam(pFirst, pRun);
+            pFirst = exitprogam(pFirst, pRun);
             free(pFirst);
             free(pBuffer);
             exit(0);
@@ -207,13 +207,14 @@ void *removed(void *pFirst, void *pRun){ // Removendo OK
         return pFirst;
 }
 
-void exitprogam(void *pFirst, void *pRun){ // LIBERAR MEMÓRIA OK
+void *exitprogam(void *pFirst, void *pRun){ // LIBERAR MEMÓRIA OK
     pRun = *(void **)pFirst;
     while(pRun != NULL){
         *(void **)pFirst = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
         free(pRun);
-        pRun = *(void **)(pFirst + NAME + AGE + NUMBER + ANTERIOR);
+        pRun = *(void **)pFirst;
     }
     free(pRun);
-    return;
+
+    return pFirst;
 }
