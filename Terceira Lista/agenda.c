@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-//Variaveis contador
+
 #define OPTION (sizeof(int))
 #define CONTADOR (sizeof(int))
 #define AUX_CHAR (sizeof(char)*20)
 
-//Variaveis Aux
+
 #define ULTIMO (sizeof(void **))
 #define PRIMEIRO (sizeof(void **))
 
-//Variaveis linkedlist
+
 #define NAME (sizeof(char)*20)
 #define AGE (sizeof(int))
 #define NUMBER (sizeof(int))
@@ -91,7 +91,7 @@ int main(){
 
         case 5:
             printf("SAINDO!!!\n");
-            pFirst = exitprogam(pFirst, pRun);
+            pFirst = (void*)exitprogam(pFirst, pRun);
             free(pFirst);
             free(pBuffer);
             exit(0);
@@ -104,20 +104,24 @@ int main(){
     }while(*(int *)pBuffer != 5);
 }
 
-void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
-    linkedlist = malloc(NAME + AGE + NUMBER + ANTERIOR + PROX); //Aloca um espaço pro Linkedlist
+void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ 
+    linkedlist = malloc(NAME + AGE + NUMBER + ANTERIOR + PROX);
+    if(!linkedlist){
+        printf("Erro de memória!");
+        exit(0);
+    } 
     void *aux;
     void *aux_2;
 
       printf("Digite o nome: ");
-      scanf("%s", (char *)linkedlist); // Adicionando nome;
+      scanf("%s", (char *)linkedlist); 
         printf("Digite a idade: ");
-        scanf("%d", (int *)(linkedlist + NAME)); // Adicionando Idade;
+        scanf("%d", (int *)(linkedlist + NAME));
         printf("Digite o numero: ");
-       scanf("%d", (int *)(linkedlist + NAME + AGE)); // Adicionando numero;
+       scanf("%d", (int *)(linkedlist + NAME + AGE)); 
       printf("\n");
-    *(void **)(linkedlist + NAME + AGE + NUMBER ) = NULL; //Zera o anterior
-    *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR ) = NULL; //Zera o Proximo
+    *(void **)(linkedlist + NAME + AGE + NUMBER ) = NULL; 
+    *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR ) = NULL; 
     
     if(*(int *)(pBuffer + OPTION) == 1){
         *(void **)pFirst = linkedlist;
@@ -132,7 +136,7 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
                 if(strcmp((char *)linkedlist, (char *)aux) < 0){
                     
                     if(*(int *)(pBuffer) == 1){
-                        *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR) = aux;
+                        *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR) = aux; 
                         *(void **)(aux + NAME + AGE + NUMBER) = linkedlist;
                         *(void **)(linkedlist + NAME + AGE + NUMBER) = NULL;
                         *(void **)pFirst = linkedlist;
@@ -141,10 +145,10 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
                    }
                     else{
                         
-                            aux_2 = *(void **)(aux + NAME + AGE + NUMBER); // atribui a aux_2 o proximo que estava em aux;
-                            *(void **)(aux_2 + NAME + AGE + NUMBER + ANTERIOR) = linkedlist; // atribui o proximo; A -> B
-                            *(void **)(linkedlist + NAME + AGE + NUMBER) = aux_2; //atribui o anterior ao linkedlist B -> A
-                            *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR) = aux; // atribui o proximo ao B -> C
+                            aux_2 = *(void **)(aux + NAME + AGE + NUMBER); 
+                            *(void **)(aux_2 + NAME + AGE + NUMBER + ANTERIOR) = linkedlist; 
+                            *(void **)(linkedlist + NAME + AGE + NUMBER) = aux_2;  
+                            *(void **)(linkedlist + NAME + AGE + NUMBER + ANTERIOR) = aux; 
                             *(void **)(aux + NAME + AGE + NUMBER) = linkedlist;              
                             *(int *)(pBuffer) = 1;
                             return pFirst;
@@ -155,10 +159,10 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
              
             }
                 if(*(int *)(pBuffer) >= *(int *)(pBuffer + OPTION)){
-                        aux = *(void **)(pFirst + PRIMEIRO); // recebe o anterior
-                         *(void **)(aux + (NAME + AGE + NUMBER + ANTERIOR)) = linkedlist; // Adiciona o proximo
-                         *(void **)(linkedlist + NAME + AGE + NUMBER) = aux; // Adiciona o anterior
-                         *(void **)(pFirst + PRIMEIRO) = linkedlist; // Adiciona o atual
+                        aux = *(void **)(pFirst + PRIMEIRO); 
+                         *(void **)(aux + (NAME + AGE + NUMBER + ANTERIOR)) = linkedlist; 
+                         *(void **)(linkedlist + NAME + AGE + NUMBER) = aux; 
+                         *(void **)(pFirst + PRIMEIRO) = linkedlist; 
                          *(int *)(pBuffer) = 1;
                           return pFirst;
                 }
@@ -166,7 +170,7 @@ void *addPerson(void *pBuffer, void *linkedlist, void *pFirst){ // Ordenar OK
     return pFirst;
 }
 
-void show(void *pFirst, void *pRun){ // Printar OK
+void show(void *pFirst, void *pRun){ 
         pRun = *(void **)pFirst;
       while(pRun != NULL){
     
@@ -179,7 +183,7 @@ void show(void *pFirst, void *pRun){ // Printar OK
       return;
 }
 
-void search(void *pFirst, void *pRun, void *pBuffer){ // Procurar OK
+void search(void *pFirst, void *pRun, void *pBuffer){ 
 
     printf("Digite o nome que queira buscar: ");
     scanf("%s", (char *)(pBuffer + OPTION + CONTADOR));
@@ -197,7 +201,7 @@ void search(void *pFirst, void *pRun, void *pBuffer){ // Procurar OK
     return;
 }
 
-void *removed(void *pFirst, void *pRun){ // Removendo OK
+void *removed(void *pFirst, void *pRun){ 
 
         pRun = *(void **)pFirst;
         *(void **)pFirst = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
@@ -207,7 +211,7 @@ void *removed(void *pFirst, void *pRun){ // Removendo OK
         return pFirst;
 }
 
-void *exitprogam(void *pFirst, void *pRun){ // LIBERAR MEMÓRIA OK
+void *exitprogam(void *pFirst, void *pRun){ 
     pRun = *(void **)pFirst;
     while(pRun != NULL){
         *(void **)pFirst = *(void **)(pRun + NAME + AGE + NUMBER + ANTERIOR);
@@ -215,6 +219,5 @@ void *exitprogam(void *pFirst, void *pRun){ // LIBERAR MEMÓRIA OK
         pRun = *(void **)pFirst;
     }
     free(pRun);
-
     return pFirst;
 }
