@@ -103,6 +103,27 @@ void secondScenery(){
     cleanTree(pSource);
     pSource = NULL;
 
+    printf("Segundo caso: Inserir 15");
+    reg.key = 20;
+    insert(&pSource, reg);
+    reg.key = 4;
+    insert(&pSource, reg);
+    reg.key = 26;
+    insert(&pSource, reg);
+    reg.key = 3;
+    insert(&pSource, reg);
+    reg.key = 9;
+    insert(&pSource, reg);
+    printf("\n- Antes de inserir o 15\n");
+    listTree(pSource);
+    printf("\n");
+    reg.key = 15;
+    insert(&pSource, reg);
+    printf("- Depois de inserir o 15\n");
+    listTree(pSource);
+    printf("\n\n");
+    cleanTree(pSource);
+    pSource = NULL;
 
     printf("Terceiro caso: Inserir 15");
     reg.key = 20;
@@ -174,7 +195,35 @@ void secondScenery(){
     cleanTree(pSource);
     pSource = NULL;
 
-
+    printf("Sexto caso: Inserir 8");
+    reg.key = 20;
+    insert(&pSource, reg);
+    reg.key = 4;
+    insert(&pSource, reg);
+    reg.key = 26;
+    insert(&pSource, reg);
+    reg.key = 3;
+    insert(&pSource, reg);
+    reg.key = 9;
+    insert(&pSource, reg);
+    reg.key = 21;
+    insert(&pSource, reg);
+    reg.key = 30;
+    insert(&pSource, reg);
+    reg.key = 2;
+    insert(&pSource, reg);
+    reg.key = 7;
+    insert(&pSource, reg);
+    reg.key = 11;
+    insert(&pSource, reg);
+    printf("\n- Antes de inserir o 8\n");
+    listTree(pSource);
+    printf("\n");
+    reg.key = 8;
+    insert(&pSource, reg);
+    printf("- Depois de inserir o 8\n");
+    listTree(pSource);
+    printf("\n\n");
     cleanTree(pSource);
     pSource = NULL;
 

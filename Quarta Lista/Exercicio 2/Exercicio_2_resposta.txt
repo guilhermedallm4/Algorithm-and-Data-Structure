@@ -1,0 +1,4 @@
+É possível que uma inserção/remoção gere mais do que uma rotação dupla? Explique.
+
+Resposta:
+	Não é possivel que seja feito mais que uma rotação dupla pelo fato de que a cada inserção e remoção é feita a verificação na árvore e feito o balanceamento da árvore, e só á dois cenários para as rotação as simples e as duplas.
