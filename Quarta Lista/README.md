@@ -31,3 +31,8 @@ usuário item 3.1.1
    Link do vídeo:  https://drive.google.com/file/d/1gApYQTJDsvifE-O5hH-XJanwcwTQN69D/view?usp=sharing
 
 # Exercicio 4:
+
+4. Faça na mão pelo menos um caso de inserção em sequência de valores e vá montando o passo a passo da árvore
+    
+    • Coloque a foto do passo a passo no seu GIT e mande na lista de exercícios 4 – Lembre de fazer isso de forma organizada
+    Git: https://github.com/guilhermedallm4/Algoritimo-e-Estrutura-de-Dados-1/tree/main/Quarta%20Lista
