@@ -1,0 +1,88 @@
+Dr. Memory version 2.5.0 build 0 built on Oct 18 2021 03:10:43
+Windows version: WinVer=105;Rel=2009;Build=19043;Edition=Enterprise
+Dr. Memory results for pid 10412: "OrdenationSort.exe"
+Application cmdline: ""C:\Users\guilh\Desktop\AED 1\Semana 10\OrdenationSort.exe""
+Recorded 124 suppression(s) from default C:\Program Files (x86)\Dr. Memory\bin\suppress-default.txt
+
+Error #1: UNINITIALIZED READ: reading register eax
+# 0 KERNELBASE.dll!FindNextFileW 
+# 1 KERNELBASE.dll!FindNextFileA 
+# 2 .text             
+# 3 __mingw_glob      
+# 4 _setargv          
+# 5 .text             
+# 6 ntdll.dll!__RtlUserThreadStart
+Note: @0:00:00.750 in thread 11732
+Note: instruction: cmp    %eax $0x00000018
+
+Error #2: UNINITIALIZED READ: reading register eax
+# 0 KERNELBASE.dll!FindNextFileW 
+# 1 KERNELBASE.dll!FindNextFileA 
+# 2 .text             
+# 3 __mingw_glob      
+# 4 _setargv          
+# 5 .text             
+# 6 ntdll.dll!__RtlUserThreadStart
+Note: @0:00:00.751 in thread 11732
+Note: instruction: data16 mov    %cx -> 0x00000234(%esi,%eax,2)
+
+Error #3: UNINITIALIZED READ: reading register eax
+# 0 KERNELBASE.dll!FindNextFileW 
+# 1 KERNELBASE.dll!FindNextFileA 
+# 2 .text             
+# 3 __mingw_glob      
+# 4 _setargv          
+# 5 .text             
+# 6 ntdll.dll!__RtlUserThreadStart
+Note: @0:00:00.765 in thread 11732
+Note: instruction: test   %eax %eax
+
+Error #4: UNADDRESSABLE ACCESS beyond heap bounds: reading 0x011a1fa0-0x011a1fa4 4 byte(s)
+# 0 selectionSort     
+# 1 main              
+Note: @0:00:02.029 in thread 11732
+Note: next higher malloc: 0x011a1fc0-0x011a1fe8
+Note: refers to 0 byte(s) beyond last valid byte in prior malloc
+Note: prev lower malloc:  0x011a1f78-0x011a1fa0
+Note: instruction: mov    (%eax) -> %eax
+
+Error #5: UNADDRESSABLE ACCESS beyond heap bounds: reading 0x011a2030-0x011a2034 4 byte(s)
+# 0 mergeSort         
+# 1 merge             
+# 2 main              
+Note: @0:00:02.070 in thread 11732
+Note: refers to 0 byte(s) beyond last valid byte in prior malloc
+Note: prev lower malloc:  0x011a2008-0x011a2030
+Note: instruction: mov    (%eax) -> %eax
+
+Error #6: UNADDRESSABLE ACCESS beyond heap bounds: reading 0x011a2030-0x011a2034 4 byte(s)
+# 0 mergeSort         
+# 1 merge             
+# 2 main              
+Note: @0:00:02.071 in thread 11732
+Note: refers to 0 byte(s) beyond last valid byte in prior malloc
+Note: prev lower malloc:  0x011a2008-0x011a2030
+Note: instruction: mov    (%eax) -> %eax
+
+===========================================================================
+FINAL SUMMARY:
+
+DUPLICATE ERROR COUNTS:
+	Error #   1:      3
+	Error #   2:      3
+
+SUPPRESSIONS USED:
+
+ERRORS FOUND:
+      3 unique,     3 total unaddressable access(es)
+      3 unique,     7 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total handle leak(s)
+      0 unique,     0 total warning(s)
+      0 unique,     0 total,      0 byte(s) of leak(s)
+      0 unique,     0 total,      0 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      7 unique,     7 total,   4502 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: C:\Users\guilh\AppData\Roaming\Dr. Memory\DrMemory-OrdenationSort.exe.10412.000\results.txt
